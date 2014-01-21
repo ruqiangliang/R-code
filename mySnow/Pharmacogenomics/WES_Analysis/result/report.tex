@@ -1,0 +1,270 @@
+\documentclass{article}
+
+\usepackage{Sweave}
+\begin{document}
+\input{report-concordance}
+
+\title{Sequencing association study of calcium signaling genes with hearing capability using continuous extreme phenotype sequencing kernel association test}
+\author{Ruqiang Liang}
+\maketitle
+
+We totally have 377 females with hearing data. Their average Z scores at 2, 4, 8 kHz were calculated, showing $0.4102 \pm 0.8372$ (mean $\pm$ std). Shapiro test showed the distribution was not normal (Fig. \ref{fig:zdistr}. $p = 7 \times 10^{-7}$). Here we use six of the best hearing female's genomic DNA and six of the worst heaing female's genomic DNA to do whole exome sequencing (Table \ref{tab:female}).The whole picture of genomic variation are shown in Table \ref{tab:whole}.
+
+We are focusing on 304 genes which are involved in calcium signaling (KEGG hsa04020, 174 genes), drug metabolism (KEGG hsa00982, 62 genes), metabolism of xenobiotic by cytochrome P450 (KEGG hsa00980, 50 genes), and known deaf genes (39 genes). To simulate target-enriched sequencing, here we only do CEPSKAT analysis on these 304 genes. Fig. \ref{fig:allP} shows the na\"ive p values of the association of genetic variantions in these genes with the continuous extreme Z scores. Table \ref{tab:lowP} shows the genes with collapsed na\"ive p values lower than 0.3. 
+
+For example, {\it CACNA1F} gene shows a p value of 0.2308. Table \ref{tab:a1F} shows the genotype matrix where 0 means major allele, 1 means heterozygotes of major and minor alleles, 2 means homozygotes of minor alleles. Table \ref{tab:SNPa1F} shows the SNP calls of {\it CACNA1F} across these 12 samples. Interestingly, {\it CACNA1F} shows  a slightly larger p than deaf gene {\it MYO7A} whose p is 0.2301. Fig. \ref{fig:myo7a} shows the genotype matrix of {\it MYO7A}. Although these p values are relatively low, after Benjamini \& Hochberg ajust, the lowest 232 gene's false discovery rate (FDR) are all 0.618, means not significant. This sugguests the power is too low by only investigating in these 12 samples.
+
+As it's whole exome sequencing data, I also tried CEPSKAT on all the genes. Fig. \ref{fig:allGene} shows the na\"ive p values on the association of genetic variantions with Z scores, while Table \ref{tab:lowPall} shows the list. Genotype matrix for {\it GCN1L1} is shown in Table \ref{tab:gcn1l1}, which encodes translational activator GCN1.
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Genomic DNA and phenotype of individuals used for WES} 
+\label{tab:female}
+\begin{tabular}{rlrlr}
+  \hline
+ & ID & Z & ID & Z \\ 
+  \hline
+1 & 259B & -1.3409 & 566A & 2.0236 \\ 
+  2 & 090A & -1.2004 & 363A & 2.0252 \\ 
+  3 & 283B & -1.0357 & 500A & 2.2764 \\ 
+  4 & 242NB & -1.0307 & 292A & 2.8614 \\ 
+  5 & 434B & -1.0290 & 465A & 3.0213 \\ 
+  6 & 269A & -0.9532 & 376A & 4.0166 \\ 
+   \hline
+\end{tabular}
+\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Genomic variations from WES} 
+\label{tab:whole}
+{\small
+\begin{tabular}{rlllllll}
+  \hline
+ & ID & SNP\_known & SNP\_know\_target & SNP\_novel & SNP\_novel\_target & Indel & Indel\_target \\ 
+  \hline
+1 & 090A & 36976 & 771 & 3993 & 72 & 232 & 3 \\ 
+  2 & 242NB & 37974 & 784 & 3033 & 37 & 233 & 5 \\ 
+  3 & 259B & 37579 & 745 & 3332 & 58 & 223 & 4 \\ 
+  4 & 269A & 37923 & 800 & 3152 & 59 & 230 & 5 \\ 
+  5 & 283B & 37744 & 797 & 3270 & 50 & 242 & 4 \\ 
+  6 & 292A & 39045 & 762 & 2968 & 39 & 262 & 6 \\ 
+  7 & 363A & 37467 & 816 & 3540 & 70 & 245 & 3 \\ 
+  8 & 376A & 40890 & 807 & 4051 & 50 & 261 & 5 \\ 
+  9 & 434B & 38336 & 798 & 3252 & 49 & 244 & 6 \\ 
+  10 & 465A & 36969 & 747 & 3190 & 56 & 243 & 4 \\ 
+  11 & 500A & 38588 & 755 & 3057 & 41 & 249 & 5 \\ 
+  12 & 566A & 37143 & 777 & 3339 & 53 & 235 & 4 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[htb]
+\centering
+\includegraphics{report-004}
+
+\caption{{\bf {Distribution of Z scores of all the female individuals whose genomic DNA we have.}} Dashed line, simulated normal distribution with the mean and standard deviation values of these female's Z scores; solid line, density curve of the Z scores distribution. Red vertical line, the maximum of the lower extreme phenotype we used to do the whole exome sequencing; green vertical line, the minimum of the upper extreme phenotype. }
+\label{fig:zdistr}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics{report-005}
+
+\caption{{\bf {Na\"ive p values calculated by CEPSKAT on the association of genetic variations in the genes with Z scores.}} Genetic variantions in each genes were collapsed altogether to give a p value for that gene. }
+\label{fig:allP}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics{report-006}
+
+\caption{{\bf {Genotype matrix of MYO7A.}} Horizontal, ID with Z score increasing; vertical, SNP positions across the MYO7A gene. Red, homozygous of major allele; yellow, heterozygous major and minor allele; white, homozygous of minor alleles.}
+\label{fig:myo7a}
+\end{figure}
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Collapsed naive p of genetic variations in the gene in association with Z scores} 
+\label{tab:lowP}
+{\tiny
+\begin{tabular}{rlrrlrrlrrlrr}
+  \hline
+ & Gene & P & Num & Gene & P & Num & Gene & P & Num & Gene & P & Num \\ 
+  \hline
+162 & HRH2 & 0.0325 & 1 & HTR2C & 0.1335 & 2 & WFS1 & 0.2130 & 11 & SLC26A5 & 0.2640 & 8 \\ 
+  116 & ERBB2 & 0.0357 & 4 & CYP2A7 & 0.1387 & 22 & CALML5 & 0.2196 & 3 & CACNA1S & 0.2654 & 25 \\ 
+  176 & LHCGR & 0.0453 & 1 & PLCZ1 & 0.1396 & 4 & PLCG1 & 0.2202 & 8 & MYO3A & 0.2674 & 30 \\ 
+  61 & CACNG6 & 0.0550 & 2 & CYP3A5 & 0.1455 & 7 & RDX & 0.2257 & 6 & FMO1 & 0.2684 & 2 \\ 
+  241 & PRKACG & 0.0783 & 1 & VDAC3 & 0.1577 & 1 & CHRM1 & 0.2287 & 5 & NOS1 & 0.2730 & 4 \\ 
+  19 & ADRA1B & 0.0808 & 3 & SLC8A3 & 0.1598 & 10 & MYO7A & 0.2301 & 27 & AOX1 & 0.2742 & 19 \\ 
+  84 & CHRM2 & 0.0881 & 1 & MYLK & 0.1640 & 11 & CACNA1F & 0.2308 & 10 & TACR1 & 0.2746 & 2 \\ 
+  130 & GJB6 & 0.0881 & 1 & GNAL & 0.1669 & 8 & PHKA2 & 0.2361 & 4 & CACNB3 & 0.2776 & 6 \\ 
+  113 & EDNRA & 0.0895 & 5 & HTR2A & 0.1718 & 3 & AVPR1B & 0.2367 & 8 & CYSLTR1 & 0.2799 & 3 \\ 
+  184 & MYH9 & 0.0984 & 9 & CACNB1 & 0.1739 & 6 & SLC26A4 & 0.2390 & 1 & PHKA1 & 0.2815 & 8 \\ 
+  37 & AVPR1A & 0.1022 & 1 & TRDN & 0.1785 & 10 & CALM1 & 0.2396 & 2 & EDNRB & 0.2877 & 2 \\ 
+  250 & PTK2B & 0.1027 & 18 & ATP2A2 & 0.1890 & 2 & ADCY8 & 0.2447 & 10 & PTAFR & 0.2877 & 1 \\ 
+  97 & CYP2C18 & 0.1038 & 2 & PDE1B & 0.1962 & 2 & ALDH3B1 & 0.2504 & 4 & MAOB & 0.2877 & 2 \\ 
+  292 & UGT2A3 & 0.1059 & 6 & CYP2E1 & 0.1966 & 5 & BST1 & 0.2515 & 8 & FMO4 & 0.2877 & 4 \\ 
+  55 & CACNB2 & 0.1076 & 8 & ALDH3A1 & 0.1986 & 7 & PPP3CA & 0.2552 & 1 & TBXA2R & 0.2879 & 5 \\ 
+  2 & ADCY1 & 0.1102 & 10 & UGT2B15 & 0.2068 & 6 & GRM1 & 0.2552 & 6 & GSTT2 & 0.2885 & 7 \\ 
+  157 & GSTP1 & 0.1175 & 6 & CALM3 & 0.2074 & 1 & P2RX5 & 0.2565 & 3 & UGT2B4 & 0.2897 & 2 \\ 
+  43 & CACNA1B & 0.1176 & 13 & UGT2B7 & 0.2075 & 7 & CCKAR & 0.2578 & 8 & GRIN2A & 0.2969 & 4 \\ 
+  160 & GSTZ1 & 0.1264 & 11 & CACNA2D2 & 0.2114 & 7 & CYP2D6 & 0.2619 & 17 & RYR2 & 0.2969 & 53 \\ 
+  302 & VDAC2 & 0.1327 & 4 & STRC & 0.2118 & 8 & ADCY9 & 0.2627 & 10 & GNA14 & 0.2975 & 4 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Genotype matrix of CACNA1F gene} 
+\label{tab:a1F}
+{\small
+\begin{tabular}{rlrrrrrrrrrrr}
+  \hline
+ & ID & Z & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+  \hline
+1 & 259B & -1.3409 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  2 & 090A & -1.2004 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  3 & 283B & -1.0357 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  4 & 242NB & -1.0307 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  5 & 434B & -1.0290 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+  6 & 269A & -0.9532 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\ 
+  7 & 566A & 2.0236 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+  8 & 363A & 2.0252 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+  9 & 500A & 2.2764 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  10 & 292A & 2.8614 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+  11 & 465A & 3.0213 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+  12 & 376A & 4.0166 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Known SNPs called for CACNA1F gene across the 12 samples} 
+\label{tab:SNPa1F}
+{\tiny
+\begin{tabular}{rlrllllll}
+  \hline
+ & ID & Position & Ref & Alleles & GVS\_func & Amino.Acid & AA.Pos & SNP.Database \\ 
+  \hline
+36563 & 090A & 49065802 & T & A/T & missense & THR,SER & 1636/1978 & none \\ 
+  37515 & 269A & 49075777 & C & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  37516 & 269A & 49077072 & G & A/G & intron & none &  & dbSNP \\ 
+  38619 & 292A & 49071964 & A & A/G & coding-synonymous & none & 1103/1978 & dbSNP\_1000Genomes \\ 
+  38620 & 292A & 49077583 & G & A/G & intron & none &  & dbSNP\_1000Genomes \\ 
+  38621 & 292A & 49081291 & G & A/G & coding-synonymous & none & 614/1978 & dbSNP \\ 
+  38622 & 292A & 49084492 & c & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  38623 & 292A & 49087487 & G & A/G & intron & none &  & dbSNP \\ 
+  37084 & 363A & 49071964 & A & A/G & coding-synonymous & none & 1103/1978 & dbSNP\_1000Genomes \\ 
+  37085 & 363A & 49077583 & G & A/G & intron & none &  & dbSNP\_1000Genomes \\ 
+  37086 & 363A & 49081291 & G & A/G & coding-synonymous & none & 614/1978 & dbSNP \\ 
+  37087 & 363A & 49084492 & c & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  37088 & 363A & 49087487 & G & A/G & intron & none &  & dbSNP \\ 
+  40430 & 376A & 49071522 & G & A/G & intron & none &  & none \\ 
+  40431 & 376A & 49071964 & A & A/G & coding-synonymous & none & 1103/1978 & dbSNP\_1000Genomes \\ 
+  40432 & 376A & 49077583 & G & A/G & intron & none &  & dbSNP\_1000Genomes \\ 
+  40433 & 376A & 49081291 & G & A/G & coding-synonymous & none & 614/1978 & dbSNP \\ 
+  40434 & 376A & 49084492 & c & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  40435 & 376A & 49087487 & G & A/G & intron & none &  & dbSNP \\ 
+  37931 & 434B & 49065631 & G & A/G & intron & none &  & none \\ 
+  37932 & 434B & 49071964 & A & A/G & coding-synonymous & none & 1103/1978 & dbSNP\_1000Genomes \\ 
+  37933 & 434B & 49077583 & G & A/G & intron & none &  & dbSNP\_1000Genomes \\ 
+  37934 & 434B & 49081291 & G & A/G & coding-synonymous & none & 614/1978 & dbSNP \\ 
+  37935 & 434B & 49084492 & c & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  37936 & 434B & 49087487 & G & A/G & intron & none &  & dbSNP \\ 
+  36599 & 465A & 49077072 & G & A/G & intron & none &  & dbSNP \\ 
+  367361 & 566A & 49071964 & A & A/G & coding-synonymous & none & 1103/1978 & dbSNP\_1000Genomes \\ 
+  367371 & 566A & 49077583 & G & A/G & intron & none &  & dbSNP\_1000Genomes \\ 
+  367381 & 566A & 49081291 & G & A/G & coding-synonymous & none & 614/1978 & dbSNP \\ 
+  367391 & 566A & 49084492 & c & C/T & intron & none &  & dbSNP\_1000Genomes \\ 
+  367401 & 566A & 49087487 & G & A/G & intron & none &  & dbSNP \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[htb]
+\centering
+\includegraphics{report-010}
+
+\caption{{\bf {Na\"ive p values calculated by CEPSKAT on the association of genetic variations in all the genes with Z scores.}} Genetic variantions in each genes were collapsed altogether to give a p value for that gene. }
+\label{fig:allGene}
+\end{figure}
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Collapsed naive p of genetic variations in all the genes in association with Z scores.} 
+\label{tab:lowPall}
+{\tiny
+\begin{tabular}{rlrrlrrlrrlrr}
+  \hline
+ & Gene & P & Num & Gene & P & Num & Gene & P & Num & Gene & P & Num \\ 
+  \hline
+8069 & PLEK2 & 0.0067 & 1 & TMEM213 & 0.0224 & 1 & GFI1 & 0.0346 & 1 & ZXDB & 0.0440 & 4 \\ 
+  819 & UFC1 & 0.0077 & 1 & HOXB1 & 0.0242 & 4 & CST1 & 0.0346 & 3 & TM4SF5 & 0.0445 & 4 \\ 
+  382 & PRDX1 & 0.0081 & 1 & SLC30A8 & 0.0246 & 1 & ERBB2 & 0.0357 & 4 & LOC647020 & 0.0446 & 2 \\ 
+  3462 & TIGD6 & 0.0093 & 3 & RUNDC2A & 0.0247 & 1 & TIE1 & 0.0360 & 2 & OOEP & 0.0447 & 2 \\ 
+  7086 & GNB3 & 0.0095 & 1 & RFPL4B & 0.0256 & 1 & NAT8 & 0.0367 & 1 & GPIHBP1 & 0.0454 & 4 \\ 
+  11917 & TCEAL2 & 0.0134 & 1 & FGF9 & 0.0265 & 3 & DCUN1D1 & 0.0378 & 2 & C1orf93 & 0.0471 & 1 \\ 
+  7946 & C14orf21 & 0.0148 & 5 & OR10A2 & 0.0265 & 3 & ZNF200 & 0.0380 & 2 & SLC45A1 & 0.0480 & 5 \\ 
+  3131 & C5orf23 & 0.0161 & 1 & EYA2 & 0.0269 & 3 & DVL2 & 0.0380 & 7 & DEFA4 & 0.0485 & 3 \\ 
+  7700 & LNX2 & 0.0161 & 1 & TOB1 & 0.0272 & 1 & NDUFA10 & 0.0380 & 6 & SHE & 0.0487 & 2 \\ 
+  1336 & ATP6V1E2 & 0.0161 & 1 & MPDU1 & 0.0278 & 2 & FAM169B & 0.0380 & 2 & SERPINF2 & 0.0492 & 4 \\ 
+  3386 & TMCO6 & 0.0164 & 3 & RPS2 & 0.0283 & 3 & PRCD & 0.0384 & 2 & NUDT10 & 0.0494 & 3 \\ 
+  8786 & TMC7 & 0.0175 & 4 & RIBC1 & 0.0309 & 1 & KRTAP4-5 & 0.0400 & 1 & ZNF256 & 0.0521 & 2 \\ 
+  2603 & NCBP2 & 0.0183 & 1 & OR4K17 & 0.0313 & 2 & SOX9 & 0.0406 & 2 & PTHLH & 0.0521 & 2 \\ 
+  10389 & IFI30 & 0.0196 & 2 & OR2D2 & 0.0325 & 4 & B4GALT5 & 0.0408 & 6 & IL28RA & 0.0522 & 3 \\ 
+  7582 & GCN1L1 & 0.0198 & 10 & TCTE1 & 0.0325 & 6 & LOC100287728 & 0.0426 & 1 & C8orf44 & 0.0526 & 1 \\ 
+  3058 & HELT & 0.0207 & 1 & C14orf156 & 0.0325 & 1 & FAM5B & 0.0427 & 2 & HIST4H4 & 0.0526 & 1 \\ 
+  6937 & RPS25 & 0.0212 & 1 & CUL4A & 0.0328 & 9 & C6orf124 & 0.0428 & 1 & F9 & 0.0531 & 1 \\ 
+  4723 & FAM131B & 0.0218 & 1 & OR2AG2 & 0.0335 & 2 & VCPIP1 & 0.0428 & 1 & MT1F & 0.0545 & 1 \\ 
+  5197 & GRINA & 0.0220 & 3 & TMEM165 & 0.0340 & 3 & OR8D1 & 0.0428 & 4 & ETV3 & 0.0548 & 1 \\ 
+  8494 & PPCDC & 0.0223 & 2 & KCNJ5 & 0.0340 & 5 & TRAFD1 & 0.0428 & 1 & DNAJC9 & 0.0548 & 1 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Fri Nov  1 13:51:55 2013
+\begin{table}[tbp]
+\centering
+\caption{Genotype matrix of GCN1L1 gene} 
+\label{tab:gcn1l1}
+{\small
+\begin{tabular}{rlrllllllllll}
+  \hline
+ & ID & Z & X1 & X2 & X3 & X4 & X5 & X6 & X7 & X8 & X9 & X10 \\ 
+  \hline
+1 & 259B & -1.3409 & C/C & T/T & A/A & G/G & G/G & A/A & T/T & T/T & A/A & C/C \\ 
+  2 & 090A & -1.2004 & C/C & C/T & A/C & C/G & A/G & A/G & C/T & G/T & A/G & C/T \\ 
+  3 & 283B & -1.0357 & C/C & C/T & A/C & C/G & G/G & A/G & T/T & G/T & A/G & C/T \\ 
+  4 & 242NB & -1.0307 & C/C & C/T & A/C & C/G & G/G & A/G & T/T & G/T & A/G & C/T \\ 
+  5 & 434B & -1.0290 & C/C & C/T & A/C & C/G & G/G & A/G & T/T & G/T & A/G & C/T \\ 
+  6 & 269A & -0.9532 & C/C & T/T & A/A & G/G & A/G & A/A & C/T & T/T & A/A & C/C \\ 
+  7 & 566A & 2.0236 & C/C & T/T & A/A & G/G & A/G & A/A & C/T & T/T & A/A & C/C \\ 
+  8 & 363A & 2.0252 & C/C & T/T & A/A & G/G & A/G & A/A & C/T & T/T & A/A & C/C \\ 
+  9 & 500A & 2.2764 & C/C & T/T & A/A & G/G & G/G & A/A & T/T & T/T & A/A & C/C \\ 
+  10 & 292A & 2.8614 & C/C & T/T & A/A & G/G & G/G & A/A & T/T & T/T & A/A & C/C \\ 
+  11 & 465A & 3.0213 & C/C & T/T & A/A & G/G & A/G & A/A & C/T & T/T & A/A & C/C \\ 
+  12 & 376A & 4.0166 & C/C & T/T & A/A & G/G & G/G & A/A & T/T & T/T & A/A & C/C \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{document}

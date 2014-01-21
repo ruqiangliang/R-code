@@ -1,0 +1,498 @@
+\documentclass{article}
+\usepackage{longtable}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\title{RNA-Seq analysis of gene expressoin in spiral ganglion neurons after noise exposure}
+\author{Ruqiang Liang}
+\maketitle
+
+\section{Gene expression profiling of SGN from noise exposure at 96 dB compared to without noise control}
+There are 296 genes up-regulated and 355 genes down-regulated more than 2 times in spiral ganglions from ears after noise exposure at 96 dB comparing to negative control without noise exposure, with more than 10 FPKM in both conditions. Gene ontology analysis is shown in Table \ref{table:tab1}. Mapping the down-regulated genes in SGN from 96 dB noise exposed ears to the KEGG pathways shows that \texttt{mmu04142:Lysosome} pathway and \texttt{mmu04360:Axon guidance} pathway are the top two down-regulated pathways (Fisher's exact test, $P=0.016$ and $P=0.024$, respectively. Table \ref{table:tab2}). Top two up-regulated pathways are \texttt{mmu03040:Spliceosome} and \texttt{mmu00030:Pentose phosphate pathway} (Table \ref{table:tab3}). There are 8 and 20 calcium binding genes in up- and down-regulated genes in SGNs from ears exposed to 96 dB noise, respectivley, as listed in Table \ref{table:tab4}.
+
+The expression of Kr\"uppel-like family of transcription factors (Klfs) was listed in Table \ref{tab:klf}. {\it Klf1, Klf5, Klf8} and {\it Klf10} were not detected. Also listed in Table \ref{tab:klf} is mouse {\it Dlk} gene of which the official gene symbol is {\it Map3k12}, and receptors for BDNF and NT3. In the totally 3561 transcription factors curated in TFCat (the curated catalog of mouse and human transcription factors), only 79 transcription factors show more than 1 fold of changes with more than 10 FPKM at each condition (Table \ref{tab:TFs} and \ref{tab:TFs2} ).
+
+
+\section{Gene expression profiling of SGN from Zonisamide treatment before noise exposure at 96 dB compared to without Zonisamide}
+There are 428 genes up-regulated and 335 genes down-regulated more than 2 times in spiral ganglions from ears treated by 120 mg/kg zonisamide right before noise exposure at 96 dB comparing to without zonisamide treatment before 96 dB noise exposure, with more than 10 FPKM in both conditions. Gene ontology analysis is shown in Table \ref{table:tabzo1}. Mapping the down-regulated genes in SGN from zonisamide treated ears to the KEGG pathways shows that \texttt{mmu00510:N-Glycan biosynthesis
+} pathway and \texttt{mmu05016:Huntington's disease} pathway are the top two down-regulated pathways (Fisher's exact test, $P=6.0\times 10^{-4}$ and $P=6.2\times 10^{-3}$, respectively. Table \ref{table:tabzo3}). Up-regulated pathways by zonisamide are mostly related to oocyte meiosis and cancers, besides \texttt{mmu03018:RNA degradation}, \texttt{mmu03040:Spliceosome}, \texttt{mmu04722:Neurotrophin signaling pathway} (Fisher's exact test, $P=0.033$, $P=0.040$ and $P=0.049$, respectively. Table \ref{table:tabzo2}). There are 6 synapse transmission-related genes (Fisher's exact test, $P=0.018$) in zonisamide-treated as listed Table \ref{tab:zosynapse}; and 23 protein localization-related genes ($P=2.3\times 10^{-3}$, Table \ref{tab:zolocalization}). There are 24 up-regulated genes enriched in protein catabolic process ($P=1.5\times 10^{-3}$, Table \ref{tab:zoupcat}). Interestingly, there are also 19 apoptosis-related genes up-regulated by zonisamide ($P=9.3\times 10^{-3}$, Table \ref{tab:zoupapop}).
+
+In all 1845 GPCRs (G-protein coupled receptor activity, \texttt{GO:0004930}), there are only 4 GPCRs differentially expressed between with and without zonisamide treatment before 96 dB noise exposure (Table \ref{tab:zogpcr}), with a more than 2 fold changes and 10 FPKM.
+
+
+%%%%%%%%%%% Table 1. 96dB vs. No noise control
+\begin{table}
+\caption{Gene annotation clusters of differentially expressed genes from SGN of noise exposed ear at 96 dB in comparison with no noise control.}
+\begin{small}
+\begin{tabular}{l l l l}
+\hline
+Annotation Cluster (Up) & Score$^a$ & Annotation Cluster (Down) &  Score$^a$ \\
+\hline
+Ion binding & 2.68 & ATP binding & 2.12 \\
+Protein localization & 2.57 & Synapse transmission & 2.00 \\
+Non-membrane bounded organelle & 2.43 & Glial cell differentiation & 1.90 \\
+Membrane fraction & 2.41 & Cell cycle & 1.87 \\
+Lysosome & 1.52 & Regulation of protein localization & 1.61\\
+Golgi apparatus & 1.48 & Transcription cofactor activity & 1.57 \\
+Mitochondria & 1.41 & Cytoskeleton & 1.53 \\
+\hline
+\end{tabular}
+$^a$Enrichment score calculated by NIH DAVID (Ver 6.7).
+\end{small}
+\label{table:tab1}
+\end{table}
+
+\begin{table}
+\caption{96 dB noise down regulated genes involved in KEGG pathways.}
+\begin{small}
+\begin{tabular}{l l p{2.5in} r}
+\hline
+KEGG pathway & Gene Symbol & Gene Name & Fold$^a$ \\
+\hline
+\texttt{Lysosome} & {\it Atp6v0c} &  ATPase, H+ transporting, lysosomal V0 subunit C &-1.40 \\
+ & {\it Lamp1}& lysosomal-associated membrane protein 1 & -1.83\\
+ & {\it Npc1}& Niemann Pick type C1 & -1.47\\
+ & {\it Ap1m1}& adaptor-related protein complex AP-1, mu 1 subunit & -2.19\\
+ & {\it Ap3d1}& adaptor-related protein complex 3, delta 1 subunit & -1.23 \\
+ & {\it Ctsa} & cathepsin A & -1.55 \\
+ & {\it Cltc} & clathrin, heavy polypeptide (Hc) & -1.55 \\
+\texttt{Axon guidance} & {\it Gnai2} & guanine nucleotide binding protein (G protein), alpha inhibiting 2  & -2.88 \\
+ & {\it Cfl2} &  cofilin 2, muscle & -1.47 \\
+ & {\it Rhoa} & ras homolog gene family, member A  & -1.55 \\
+ & {\it Sema3b} & sema domain, immunoglobulin domain (Ig), short basic domain, secreted, (semaphorin) 3B & -1.04 \\
+ & {\it Pak1} & p21 protein (Cdc42\/Rac)-activated kinase 1  & -1.31 \\
+ & {\it Cdk5} & cyclin-dependent kinase 5 & -1.01 \\
+ & {\it Ntn3} & netrin 3  & -1.11 \\
+\hline
+\end{tabular}
+$^a$Fold of change.
+\end{small}
+\label{table:tab2}
+\end{table}
+
+%%%%%%%%%%% Up-regulated pathways
+\begin{table}
+\caption{96 dB noise up regulated genes involved in KEGG pathways.}
+\begin{small}
+\begin{tabular}{l p{2.7in} r}
+\hline
+KEGG pathway & Gene Symbol (Fold of changes) & P Value$^a$\\
+\hline
+\texttt{Spliceosome} & {\it Pcbp1} (1.73), {\it Snrnp200} (1.73), {\it U2af1} (1.56), {\it Pqbp1} (1.59), {\it Ddx5} (1.98), {\it Ctnnbl1} (1.54) & 0.019\\
+\texttt{Pentose phosphate pathway} & {\it Pgls} (1.07), {\it Taldo1} (1.32), {\it Pfkm} (1.20)  & 0.042 \\
+\hline
+\end{tabular}
+$^a$Fisher's exact test.
+\end{small}
+\label{table:tab3}
+\end{table}
+
+%%%%%%%%%%Calcium related genes
+\begin{table}
+\caption{96 dB noise down regulated genes annotated as calcium binding.}
+\begin{small}
+\begin{tabular}{l p{3.5in} r}
+\hline
+Gene Symbol & Official Name & Fold\\
+\hline
+{\it Notch1} &  Notch gene homolog 1 (Drosophila)	& -1.56 \\
+{\it Aif1l} &	allograft inflammatory factor 1-like & -1.06	\\
+{\it Ano10} &	anoctamin 10	& -2.83\\
+{\it Chga} &	chromogranin A	& -1.51 \\
+{\it Dner}	& delta/notch-like EGF-related receptor	& -2.18 \\
+{\it Calm3} &	calmodulin 3 & -1.11 \\
+{\it Pcdh7} & 	protocadherin 7	& -1.63 \\
+{\it Sparc} & 	secreted acidic cysteine rich glycoprotein & -1.52 \\
+{\it Atp2b2} &  ATPase, Ca$^{++}$ transporting, plasma membrane 2	& 1.37 \\
+{\it Fkbp8} &	FK506 binding protein 8	& 1.73 \\
+{\it S100a13} &	S100 calcium binding protein A13 & 1.52 \\
+{\it Cant1} &	calcium activated nucleotidase 1	& 1.12 \\
+{\it Dtna}	& dystrobrevin alpha	& 1.30 \\
+{\it Dtnb} &	dystrobrevin, beta	& 2.56 \\
+{\it Ncs1} &	frequenin homolog (Drosophila)	& 1.29 \\
+{\it Lrp1}	& low density lipoprotein receptor-related protein 1	& 1.60 \\
+{\it Mcoln1} &	mucolipin 1	 & 1.03 \\
+{\it Myl9} & 	myosin, light polypeptide 9, regulatory	& 1.13 \\
+{\it Nucb1} &	nucleobindin 1	& 1.51 \\
+{\it Plcb4}&	phospholipase C, beta 4	& 1.54	\\
+{\it P4htm} &	prolyl 4-hydroxylase, transmembrane (endoplasmic reticulum)	& 1.01	\\
+{\it Pcdhb22}	& protocadherin beta 22	& 3.06	\\
+{\it Slc25a25} &	solute carrier family 25 (mitochondrial carrier, phosphate carrier), member 25	& 1.67	\\
+{\it Spock2} &	sparc/osteonectin, cwcv and kazal-like domains proteoglycan 2	& 1.13	\\
+{\it Syt3} &	synaptotagmin III	& 1.73	\\
+{\it Syt7} &	synaptotagmin VII	& 1.13	\\
+{\it Tesc} &	tescalcin; similar to Tescalcin	& 1.01	\\
+{\it Tpcn1} &	two pore channel 1	& 1.62	\\
+\hline
+\end{tabular}
+\end{small}
+\label{table:tab4}
+\end{table}
+
+% latex table generated in R 2.15.2 by xtable 1.7-1 package
+% Fri May 17 15:34:43 2013
+\begin{table} 
+\begin{small}
+\caption{Expression of Klf transcription factors and Dlk in response to noise exposure}
+\begin{tabular}{l r r r}
+  \hline
+ Official Symbol & No Noise$^a$ & 96 dB$^a$ & Fold\\ 
+  \hline
+ {\it Klf2} & 0.00 & 1.25 & Inf \\ 
+  {\it Klf3} & 1.67 & 5.33 & 1.68 \\ 
+  {\it Klf4} & 0.33 & 1.17 & 1.82 \\ 
+ {\it Klf6} & 12.07 & 2.89 & -2.06 \\ 
+  {\it Klf7} & 5.54 & 3.37 & -0.71 \\ 
+  {\it Klf9} & 3.57 & 14.64 & 2.04 \\ 
+   {\it Klf11} & 1.86 & 0.12 & -3.90 \\ 
+  {\it Klf12} & 1.01 & 0.45 & -1.16 \\ 
+  {\it Klf13} & 4.08 & 2.53 & -0.69 \\ 
+   {\it Klf15} & 8.75 & 0.96 & -3.19 \\ 
+  {\it Klf16} & 2.49 & 0.36 & -2.77 \\ 
+  {\it Map3k12 $^b$} & 8.72 & 7.30    &     -0.26\\
+  {\it Ntrk2 $^c$} & 104.71 & 59.57 &       -0.81 \\
+{\it Ntrk3 $^d$} & 25.75 & 23.20 &          -0.15 \\
+   \hline
+\end{tabular}
+\\$^a$Gene expression in FPKM.
+\\$^b$Official gene symbol of {\it DLK} gene in mouse.
+\\$^c$Official gene symbol of BDNF receptor in mouse.
+\\$^d$Official gene symbol of NT3 receptor in mouse.
+\label{tab:klf}
+\end{small}
+\end{table}
+
+\begin{table} 
+\caption{Noise induced expression changes of transcription factors by 96 dB noise exposure$^a$ (to be continued)}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & No Noise & 96 dB & Fold \\ 
+  \hline
+{\it  Akt3 }& thymoma viral proto-oncogene 3 &210.43&17.68&-3.57 \\
+{\it  Parp1 }& poly (ADP-ribose) polymerase family &130.24&16.32&-3 \\
+{\it  Pin4 }& protein (peptidyl-prolyl cis/trans isomerase) NIMA-interacting &187.24&26.99&-2.79 \\
+{\it  Ncoa3 }& nuclear receptor coactivator 3 &129.37&26.41&-2.29 \\
+{\it  Cic }& capicua homolog (Drosophila) &14.68&11.91&-2.27 \\
+{\it  Nhp2l1 }& NHP2 non-histone chromosome protein 2-like 1 (S. cerevisiae) &180.48&37.72&-2.26 \\
+{\it  Dner }& delta/notch-like EGF-related receptor &50.57&11.12&-2.18 \\
+{\it  Lmo1 }& LIM domain only 1 &107.3&24.11&-2.15 \\
+{\it  Foxp1 }& forkhead box P1 &75.64&17.35&-2.12 \\
+{\it  Tbp }& TATA box binding protein &64.37&15.03&-2.1 \\
+{\it  Id3 }& inhibitor of DNA binding 3 &388.17&102.75&-1.92 \\
+{\it  Fubp1 }& far upstream element (FUSE) binding protein 1 &47.27&13.09&-1.85 \\
+{\it  Sirt2 }& sirtuin 2 (silent mating type information regulation 2 &137.77&38.39&-1.84 \\
+{\it  Mlxip }& MLX interacting protein &126.73&37.67&-1.75 \\
+{\it  Mapk6 }& mitogen-activated protein kinase 6 &69.06&20.95&-1.72 \\
+{\it  Pbx4 }& pre-B-cell leukemia homeobox 4 &40.79&13.55&-1.59 \\
+{\it  Id1 }& inhibitor of DNA binding 1 &48.26&16.32&-1.56 \\
+{\it  Notch1 }& Notch gene homolog 1 (Drosophila) &72.76&24.66&-1.56 \\
+{\it  Smyd5 }& SET and MYND domain containing 5 &44.11&15.65&-1.5 \\
+{\it  Pabpc1 }& poly A binding protein &53.55&19.26&-1.47 \\
+{\it  Npc1 }& Niemann Pick type C1 &55.78&20.18&-1.47 \\
+{\it  Ctcf }& CCCTC-binding factor &47.33&17.2&-1.46 \\
+{\it  Sertad1 }& SERTA domain containing 1 &37.16&13.69&-1.44 \\
+{\it  Hmga1 }& high mobility group AT-hook 1 &121.61&45.5&-1.42 \\
+{\it  Osbpl1a }& oxysterol binding protein-like 1A &29.62&11.1&-1.42 \\
+{\it  Map4k4 }& mitogen-activated protein kinase kinase kinase kinase 4 &37.71&14.17&-1.41 \\
+{\it  Tsc2 }& tuberous sclerosis 2 &35.33&13.94&-1.34 \\
+{\it  Trim28 }& tripartite motif-containing 28 &57.16&22.66&-1.33 \\
+{\it  Dhrs7 }& dehydrogenase/reductase (SDR family) member 7 &40.41&16.12&-1.33 \\
+{\it  Grlf1 }& glucocorticoid receptor DNA binding factor 1 &26.34&10.58&-1.32 \\
+{\it  Pak1 }& p21 (CDKN1A)-activated kinase 1 &27.15&10.93&-1.31 \\
+{\it  Mast1 }& microtubule associated serine/threonine kinase 1 &179.55&73.37&-1.29 \\
+{\it  Rnf41 }& ring finger protein 41 &72.15&29.64&-1.28 \\
+{\it  Tcf20 }& transcription factor 20 &42.74&17.64&-1.28 \\
+{\it  Map2k4 }& mitogen-activated protein kinase kinase 4 &31.87&13.18&-1.27 \\
+{\it  Cdkn2d }& cyclin-dependent kinase inhibitor 2D (p19 &45.53&19.24&-1.24 \\
+{\it  Scrt2 }& scratch homolog 2 &85.44&36.31&-1.23 \\
+{\it  Gps1 }& G protein pathway suppressor 1 &105.73&45.07&-1.23 \\
+{\it  Kif5a }& kinesin family member 5A &100.83&43.81&-1.2 \\
+
+
+\hline
+\end{tabular}
+$^a$Listed are only the transcription factors having more than 10 FPKM and fold changes greater than 2.
+\end{small}
+\label{tab:TFs}
+\end{table}
+
+
+
+%%%%%%%%%%%%The other half
+\begin{table} 
+\caption{Noise induced expression changes of transcription factors by 96 dB noise exposure$^a$ (continue)}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & No Noise & 96 dB & Fold \\ 
+  \hline
+{\it  Calm3 }& calmodulin 3 &415.57&192.71&-1.11 \\
+{\it  Taf9 }& TAF9 RNA polymerase II &138.14&64.7&-1.09 \\
+{\it  Gnb5 }& guanine nucleotide binding protein (G protein) &54.95&26.47&-1.05 \\
+{\it  Sec13 }& SEC13 homolog (S. cerevisiae) &83.56&40.61&-1.04 \\
+{\it  Cdk5 }& cyclin-dependent kinase 5 &48.79&24.31&-1.01 \\
+{\it  Mllt1 }& myeloid/lymphoid or mixed-lineage leukemia (trithorax homolog &37.48&76.06&1.02 \\
+{\it  Ccdc136 }& coiled-coil domain containing 136 &20.45&42.03&1.04 \\
+{\it  Ank1 }& ankyrin 1 &25.85&55.85&1.11 \\
+{\it  Nfx1 }& nuclear transcription factor &16.43&35.58&1.11 \\
+{\it  Oxr1 }& oxidation resistance 1 &12.83&28.33&1.14 \\
+{\it  Ablim2 }& actin-binding LIM protein 2 &93.05&209.44&1.17 \\
+{\it  Parp2 }& poly (ADP-ribose) polymerase family &10.08&23.66&1.23 \\
+{\it  Ctbp1 }& C-terminal binding protein 1 &24.99&58.71&1.23 \\
+{\it  Trim66 }& tripartite motif-containing 66 &10.11&23.88&1.24 \\
+{\it  Rnps1 }& ribonucleic acid binding protein S1 &18.19&44.82&1.3 \\
+{\it  Zscan22 }& zinc finger and SCAN domain containing 22 &10.46&26&1.31 \\
+{\it  Cited2 }& Cbp/p300-interacting transactivator &11.53&29.21&1.34 \\
+{\it  Pde4dip }& phosphodiesterase 4D interacting protein (myomegalin) &18.42&47.47&1.37 \\
+{\it  Ncor1 }& nuclear receptor co-repressor 1 &12.83&33.56&1.39 \\
+{\it  Zfp524 }& zinc finger protein 524 &13.73&37.56&1.45 \\
+{\it  Bcl6 }& B-cell leukemia/lymphoma 6 &16.17&47.58&1.56 \\
+{\it  Adrbk1 }& adrenergic receptor kinase &44.74&134.39&1.59 \\
+{\it  Pqbp1 }& polyglutamine binding protein 1 &34.01&102.25&1.59 \\
+{\it  Lrp1 }& low density lipoprotein receptor-related protein 1 &33.43&101.48&1.6 \\
+{\it  Rbbp5 }& retinoblastoma binding protein 5 &15.35&49.57&1.69 \\
+{\it  Mbd3 }& methyl-CpG binding domain protein 3 &10.75&35.26&1.71 \\
+{\it  Pcbp1 }& poly(rC) binding protein 1 &35.69&118.74&1.73 \\
+{\it  Med24 }& mediator complex subunit 24 &12.66&43.3&1.77 \\
+{\it  Creb3 }& cAMP responsive element binding protein 3 &14.21&49.53&1.8 \\
+{\it  Tcea2 }& transcription elongation factor A (SII) &20.64&77.75&1.91 \\
+{\it  Ddx5 }& DEAD (Asp-Glu-Ala-Asp) box polypeptide 5 &214.69&845.33&1.98 \\
+{\it  Polr3a }& polymerase (RNA) III (DNA directed) polypeptide A &15.09&61.75&2.03 \\
+{\it  Map4k3 }& mitogen-activated protein kinase kinase kinase kinase 3 &12.41&51.85&2.06 \\
+{\it  Nfib }& nuclear factor I/B &17.65&98.13&2.48 \\
+{\it  Arid3a }& AT rich interactive domain 3A (Bright like) &45.45&293.31&2.69 \\
+{\it  Mxd4 }& Max dimerization protein 4 &14.68&133.93&3.19 \\
+{\it  Sra1 }& steroid receptor RNA activator 1 &12.07&111.07&3.2 \\
+{\it  Coro7 }& coronin 7 &11.76&113.32&3.27 \\
+{\it  Zbtb20 }& zinc finger and BTB domain containing 20 &183.98&2089.09&3.51 \\
+{\it  Pknox2 }& Pbx/knotted 1 homeobox 2 &15.19&200.04&3.72 \\ 
+   \hline
+\end{tabular}
+$^a$Listed are only the transcription factors having more than 10 FPKM and fold changes greater than 2.
+\end{small}
+\label{tab:TFs2}
+\end{table}
+
+%\pagebreak
+
+\begin{table}
+\caption{Gene annotation clusters of differentially expressed genes from SGN with  and without zonisamide treatment before noise exposure.}
+\begin{small}
+\begin{tabular}{l l l l}
+\hline
+Up-regulated in ZO & Score$^a$ & Down-regulated in ZO &  Score$^a$ \\
+\hline
+Cytoplasmic vesicle & 2.52 & Ribosome & 3.82 \\
+Protein catabolic process & 2.29 & Mitochondria & 3.61 \\
+Protein translation factor & 1.81 & Non-membrane-bounded organelle & 3.49 \\
+Protein transport & 1.47 & Cytoplasmic vesicle & 2.92 \\
+Lysosome & 1.39 & Cytoskeleton & 1.84\\
+Protein biosynthesis & 1.26 & Cellular protein localization & 1.80 \\
+Intracellular organelle lumen & 1.22 & Protein domain specific binding & 1.73 \\
+Protein maturation & 1.22 & Mintochondrial lumen & 1.57 \\
+\hline
+\end{tabular}
+$^a$Enrichment score calculated by NIH DAVID (Ver 6.7).
+\end{small}
+\label{table:tabzo1}
+\end{table}
+
+
+\begin{table}
+\caption{Down-regulated genes by zonisamide-treatment involved in KEGG pathways.}
+\begin{small}
+\begin{tabular}{l l p{2.5in}}
+\hline
+KEGG pathway & P value & Gene Symbols \\
+\hline
+N-Glycan Biosynthesis  & 0.001&  {\it Mgat3, Ganab, Fut8, Dad1, Rpn1, Dpagt1 }\\
+Huntington's Disease  &0.006&	{\it Uqcrc1, Cltb, Cox7a1, Ap2a1, Ap2s1, Creb3l2, Ndufab1, Cox6a1, Dctn4 }\\
+Pentose Phosphate Pathway	&0.007&	{\it Pgls, Taldo1, Tkt, Pfkm }\\
+Tight Junction	&0.053	&{\it Epb4.1l1, Mras, Cdk4, Myl9, Akt2, Ctnnb1 }\\
+Endocytosis	&0.085&	{\it Fam125a, Smap1, Cltb, Ap2a1, Ap2s1, Dnajc6, Sh3gl2 }\\
+
+\hline
+\end{tabular}
+
+\end{small}
+\label{table:tabzo3}
+\end{table}
+
+\begin{table}
+\caption{Up-regulated genes by zonisamide-treatment involved in KEGG pathways.}
+\begin{small}
+\begin{tabular}{l l p{2.5in}}
+\hline
+KEGG pathway & P value & Gene Symbols \\
+\hline
+Oocyte Meiosis & 0.009 &  {\it Anapc1, Mapk12, Anapc5, Camk2g, Ppp2ca, Mapk3, Cdc26, 1500003o03rik } \\
+Bladder Cancer &	0.010 &	{\it Vegfb, Tymp, Pgf, Mapk3, Dapk2 } \\
+Alzheimer's Disease	& 0.012 &	{\it Hsd17b10, Aph1a, Mapt, Psen2, Mapk3, Sdhd, Ndufa10, Ndufs1, 1500003o03rik, Nae1 }\\
+Renal Cell Carcinoma	& 0.014 &	{\it Vegfb, Pgf, Mapk3, Fh1, Tceb1, Akt3 } \\
+Progesterone-Mediated Oocyte Maturation	& 0.029 &	{\it Anapc1, Mapk12, Anapc5, Mapk3, Cdc26, Akt3 }\\ 
+RNA Degradation	& 0.033 &	{\it Exosc7, Cnot10, Lsm5, Mphosph6, Zcchc7 } \\
+Spliceosome	& 0.040 &	{\it Ddx46, Nhp2l1, Zmat2, Cwc15, Lsm5, Phf5a, Ddx42 } \\
+Neurotrophin Signaling Pathway &	0.049 &	{\it Mapk12, Camk2g, Ntrk2, Mapk3, Sort1, Kidins220, Akt3 } \\
+N-Glycan Biosynthesis	& 0.067 &	{\it Tusc3, Stt3a, Rpn2, Dolpp1 } \\
+Notch Signaling Pathway	& 0.081 &	{\it Ctbp1, Notch1, Aph1a, Psen2 } \\
+MAPK Signaling Pathway	& 0.090 &	{\it Mapk12, Mapt, Ntrk2, Map2k4, Mapk3, Fgf10, Cacnb3, Cacnb4, Akt3, 1500003o03rik }\\
+mTOR Signaling Pathway	& 0.010 &	{\it Vegfb, Pgf, Mapk3, Akt3 }\\
+
+\hline
+\end{tabular}
+
+\end{small}
+\label{table:tabzo2}
+\end{table}
+
+\begin{table} 
+\caption{Zonisamide down-regulated genes involved in \texttt{GO:0050804~regulation of synaptic transmission}$^a$}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & 96 dB & 96 dB + ZO & Fold \\ 
+  \hline
+{\it Pink1 }  &PTEN induced putative kinase 1	&148.5&	62.5&	-1.25 \\
+{\it Rab3a }	&RAB3A, member RAS oncogene family&329.9&	119	&-1.47\\
+{\it Ncs1 }	&frequenin homolog (Drosophila)	&47.3	&20.2&	-1.23\\
+{\it Ica1 }	&islet cell autoantigen 1	&37.2	&18	&-1.05\\
+{\it Prkaca }	&protein kinase, cAMP dependent, catalytic, alpha&	210.5&	32.8&	-2.68\\
+{\it Syngr1 }	&synaptogyrin 1&	221.4&	44.9&	-2.3\\
+
+\hline
+\end{tabular}
+$^a$ Fisher's exact test, $P=0.018$.
+\end{small}
+\label{tab:zosynapse}
+\end{table}
+
+\begin{table} 
+\caption{Zonisamide down-regulated genes involved in \texttt{GO:0008104~protein localization}$^a$}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & 96 dB & 96 dB + ZO & Fold \\ 
+  \hline
+{\it Rph3a }  &   rabphilin 3A  &   319.4  &   45.8  &   -2.80\\
+{\it Vps41 }  &   vacuolar protein sorting 41 (yeast)  &   71.1  &   11.6  &   -2.61\\
+{\it H47 }  &   histocompatibility 47  &   61.3  &   11.8  &   -2.38\\
+{\it Syngr1 }  &   synaptogyrin 1  &   221.4  &   44.9  &   -2.30\\
+{\it Rab1b }  &   RAB1B, member RAS oncogene family  &   101.3  &   23.5  &   -2.10\\
+{\it Apba1 }  &   amyloid beta (A4) precursor protein binding, family A, member 1  &   86.6  &   20.9  &   -2.05\\
+{\it Bcl6 }  &   B-cell leukemia/lymphoma 6  &   52.1  &   14.2  &   -1.87\\
+{\it Fam125a }  &   family with sequence similarity 125, member A  &   40.6  &   12.1  &   -1.75\\
+{\it Napb }  &   N-ethylmaleimide sensitive fusion protein attachment protein beta  &   305.5  &   106.4  &   -1.52\\
+{\it Ap2a1 }  &   adaptor protein complex AP-2, alpha 1 subunit  &   70.5  &   24.7  &   -1.51\\
+{\it Oxa1l }  &   oxidase assembly 1-like  &   33.3  &   11.7  &   -1.51\\
+{\it Rab3a }  &   RAB3A, member RAS oncogene family  &   329.9  &   119.0  &   -1.47\\
+{\it Gdi1 }  &   guanosine diphosphate (GDP) dissociation inhibitor 1  &   178.7  &   67.4  &   -1.41\\
+{\it Nup88 }  &   nucleoporin 88  &   40.3  &   16.0  &   -1.33\\
+{\it Copg }  &   coatomer protein complex, subunit gamma  &   401.8  &   164.0  &   -1.29\\
+{\it Dopey2 }  &   dopey family member 2  &   40.4  &   16.7  &   -1.27\\
+{\it Cltb }  &   clathrin, light polypeptide (Lcb)  &   120.1  &   52.4  &   -1.20\\
+{\it Ctnnb1 }  &   catenin (cadherin associated protein), beta 1  &   43.2  &   19.2  &   -1.17\\
+{\it Nsf }  &   N-ethylmaleimide sensitive fusion protein  &   184.7  &   84.9  &   -1.12\\
+{\it Timm44 }  &   translocase of inner mitochondrial membrane 44  &   33.4  &   15.8  &   -1.08\\
+{\it Ap2s1 }  &   adaptor-related protein complex 2, sigma 1 subunit  &   21.7  &   10.5  &   -1.05\\
+{\it Tmsb10 }  &   predicted gene 3787; predicted gene 9844;predicted gene 8034; similar to thymosin, beta 10; thymosin, beta 10  &   101.6  &   49.6  &   -1.04\\
+{\it Bet1l }  &   blocked early in transport 1 homolog (S. cerevisiae)-like  &   50.7  &   25.2  &   -1.01\\
+\hline
+\end{tabular}
+$^a$ Fisher's exact test, $P=2.3\times 10^{-3}$.
+\end{small}
+\label{tab:zolocalization}
+\end{table}
+
+\begin{table} 
+\caption{Zonisamide up-regulated genes involved in \texttt{GO:0030163~protein catabolic process}$^a$}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & 96 dB & 96 dB + ZO & Fold \\ 
+  \hline
+{\it Rnf181}&ring finger protein 181&25.9&820.6&4.99\\
+{\it Aph1a}&predicted gene 15429; anterior pharynx defective 1a homolog (C. elegans)&12.0&255.9&4.41\\
+{\it Usp16}&ubiquitin specific peptidase 16&11.3&84.6&2.91\\
+{\it Rnf41}&ring finger protein 41&31.8&221.6&2.80\\
+{\it Ubl7}&ubiquitin-like 7 (bone marrow stromal cell-derived)&15.7&92.2&2.56\\
+{\it Usp49}&ubiquitin specific peptidase 49&10.0&57.6&2.52\\
+{\it Ubr4}&ubiquitin protein ligase E3 component n-recognin 4&29.8&127.6&2.10\\
+{\it Fbxl4}&F-box and leucine-rich repeat protein 4&15.3&63.1&2.05\\
+{\it Tceb1}&transcription elongation factor B (SIII), polypeptide 1; similar to elongation factor SIII p15 subunit&12.8&44.2&1.79\\
+{\it Ate1}&arginyltransferase 1&11.4&39.2&1.78\\
+{\it Psen2}&presenilin 2&23.4&67.5&1.53\\
+{\it Anapc5}&anaphase-promoting complex subunit 5; similar to anaphase-promoting complex subunit 5&17.3&48.3&1.48\\
+{\it Gm15800}&expressed sequence AU042671&24.1&66.9&1.47\\
+{\it Ubr5}&ubiquitin protein ligase E3 component n-recognin 5&10.3&28.3&1.45\\
+{\it Usp25}&ubiquitin specific peptidase 25&11.0&27.8&1.34\\
+{\it Psmc6}&proteasome (prosome, macropain) 26S subunit, ATPase, 6&41.4&99.6&1.27\\
+{\it Psmb3}&proteasome (prosome, macropain) subunit, beta type 3&149.6&342.8&1.20\\
+{\it Anapc1}&anaphase promoting complex subunit 1&18.0&40.7&1.18\\
+{\it Spsb3}&splA/ryanodine receptor domain and SOCS box containing 3&15.4&34.7&1.18\\
+{\it Nae1}&similar to Amyloid beta precursor protein binding protein 1; NEDD8 activating enzyme E1 subunit 1&12.6&28.3&1.17\\
+{\it Cdc26}&cell division cycle 26; predicted gene 9174&11.9&26.5&1.16\\
+{\it Mycbp2}&MYC binding protein 2&22.4&50.0&1.16\\
+{\it Brcc3}&BRCA1/BRCA2-containing complex, subunit 3&25.6&53.2&1.06\\
+{\it Uba1}&ubiquitin-like modifier activating enzyme 1&41.8&84.5&1.02\\
+\hline
+\end{tabular}
+$^a$ Fisher's exact test, $P=1.5\times 10^{-3}$.
+\end{small}
+\label{tab:zoupcat}
+\end{table}
+
+\begin{table} 
+\caption{Zonisamide up-regulated genes involved in \texttt{GO:0006915~apoptosis}$^a$}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & 96 dB & 96 dB + ZO & Fold \\ 
+  \hline
+{\it Tnfrsf21}&tumor necrosis factor receptor superfamily, member 21&19.0&176.6&3.22\\
+{\it Clptm1l}&CLPTM1-like&12.6&105.0&3.06\\
+{\it Bcl2l2}&BCL2-like 2&16.3&105.0&2.69\\
+{\it Dapk2}&death-associated protein kinase 2&36.2&222.2&2.62\\
+{\it Madd}&MAP-kinase activating death domain&12.9&65.3&2.34\\
+{\it Cyfip2}&cytoplasmic FMR1 interacting protein 2&73.6&327.2&2.15\\
+{\it Bag4}&BCL2-associated athanogene 4&19.3&79.3&2.04\\
+{\it Sharpin}&SHANK-associated RH domain interacting protein&17.3&69.3&2.00\\
+{\it Psen2}&presenilin 2&23.4&67.5&1.53\\
+{\it Rbm5}&RNA binding motif protein 5&10.3&29.4&1.51\\
+{\it Bnip3l}&similar to NIX; predicted gene 8283; BCL2/adenovirus E1B interacting protein 3-like&12.5&33.3&1.42\\
+{\it Pdcd5}&predicted gene 3837; programmed cell death 5&63.2&155.2&1.30\\
+{\it Triap1}&TP53 regulated inhibitor of apoptosis 1&13.6&33.4&1.29\\
+{\it Eif5a}&eukaryotic translation initiation factor 5A&68.0&165.4&1.28\\
+{\it Nae1}&similar to Amyloid beta precursor protein binding protein 1; NEDD8 activating enzyme E1 subunit 1&12.6&28.3&1.17\\
+{\it Aatk}&apoptosis-associated tyrosine kinase&13.5&30.2&1.16\\
+{\it Bcap31}&B-cell receptor-associated protein 31&69.3&147.6&1.09\\
+{\it Ndufs1}&NADH dehydrogenase (ubiquinone) Fe-S protein 1&27.8&56.5&1.02\\
+{\it Sod2}&superoxide dismutase 2, mitochondrial&14.1&28.5&1.01\\
+\hline
+\end{tabular}
+$^a$ Fisher's exact test, $P=9.3\times 10^{-3}$.
+\end{small}
+\label{tab:zoupapop}
+\end{table}
+
+\begin{table} 
+\caption{GPCRs regulated by zonisamide}
+\begin{small}
+\begin{tabular}{l p{2.5in }rrr}
+  \hline
+ Gene& Official Name & 96 dB & 96 dB + ZO & Fold \\ 
+  \hline
+{\it Gpr37l1} &Endothelin B receptor-like protein 2&11.1&22.3&1.01\\
+{\it Darc} &Duffy antigen/chemokine receptor&12.5&38.9&1.64\\
+{\it Gabbr2} &Gamma-aminobutyric acid type B receptor subunit 2&28.4&105.2&1.89\\
+{\it Grm7} &Metabotropic glutamate receptor 7&23.5&232.2&3.31\\
+{\it Lphn3} & Latrophilin-3 &15.9 &  30.2 & 0.93 \\
+{\it Gpr182} & G-protein-coupled receptor 182&21.4 &   16.6 &         -0.36 \\
+
+\hline
+\end{tabular}
+\end{small}
+\label{tab:zogpcr}
+\end{table}
+
+\end{document}

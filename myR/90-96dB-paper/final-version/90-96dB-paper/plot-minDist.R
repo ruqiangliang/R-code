@@ -1,0 +1,10 @@
+plot(ecdf(subset(the20k, Noise == 'NoNoise',select=c('MinDist'))$MinDist),col='red',xlab='Minimal Distance (um)', 
+     ylab='ECDF', main=NULL, xlim=c(0,8))
+lines(ecdf(subset(the20k, Noise == '90dBNE',select=c('MinDist'))$MinDist),col='green',pch='.')
+lines(ecdf(subset(the20k, Noise == '96dBSA',select=c('MinDist'))$MinDist),col='steelblue',pch='.')
+lines(ecdf(subset(the20k, Noise == '96dBZO',select=c('MinDist'))$MinDist),col='purple',pch='.')
+text(4.5,0.7,'Ribbons@20kHz',adj=0,cex=.8)
+text(4.5,0.6,'No Noise',col='red',adj=0,cex=.8)
+text(4.5,0.5,'90dB',col='green',adj=0,cex=.8)
+text(4.5,0.4,'96dB',col='steelblue',adj=0,cex=.8)
+text(4.5,0.3,'96dB/ZO',col='purple',adj=0,cex=.8)

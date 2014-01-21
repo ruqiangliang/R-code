@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\title{Sequencing association study of calcium signaling genes with hearing capability using continuous extreme phenotype sequencing kernel association test}
+\author{Ruqiang Liang}
+\maketitle
+
+We totally have 377 females with hearing data. Their average Z scores at 2, 4, 8 kHz were calculated, showing $0.4102 \pm 0.8372$ (mean $\pm$ std). Shapiro test showed the distribution was not normal (Fig. \ref{fig:zdistr}. $p = 7 \times 10^{-7}$). Here we use six of the best hearing female's genomic DNA and six of the worst heaing female's genomic DNA to do whole exome sequencing (Table \ref{tab:female}).The whole picture of genomic variation are shown in Table \ref{tab:whole}.
+
+We are focusing on 304 genes which are involved in calcium signaling (KEGG hsa04020, 174 genes), drug metabolism (KEGG hsa00982, 62 genes), metabolism of xenobiotic by cytochrome P450 (KEGG hsa00980, 50 genes), and known deaf genes (39 genes). To simulate target-enriched sequencing, here we only do CEPSKAT analysis on these 304 genes. Fig. \ref{fig:allP} shows the na\"ive p values of the association of genetic variantions in these genes with the continuous extreme Z scores. Table \ref{tab:lowP} shows the genes with collapsed na\"ive p values lower than 0.3. 
+
+For example, {\it CACNA1F} gene shows a p value of 0.2308. Table \ref{tab:a1F} shows the genotype matrix where 0 means major allele, 1 means heterozygotes of major and minor alleles, 2 means homozygotes of minor alleles. Table \ref{tab:SNPa1F} shows the SNP calls of {\it CACNA1F} across these 12 samples. Interestingly, {\it CACNA1F} shows  a slightly larger p than deaf gene {\it MYO7A} whose p is 0.2301. Fig. \ref{fig:myo7a} shows the genotype matrix of {\it MYO7A}. Although these p values are relatively low, after Benjamini \& Hochberg ajust, the lowest 232 gene's false discovery rate (FDR) are all 0.618, means not significant. This sugguests the power is too low by only investigating in these 12 samples.
+
+As it's whole exome sequencing data, I also tried CEPSKAT on all the genes. Fig. \ref{fig:allGene} shows the na\"ive p values on the association of genetic variantions with Z scores, while Table \ref{tab:lowPall} shows the list. Genotype matrix for {\it GCN1L1} is shown in Table \ref{tab:gcn1l1}, which encodes translational activator GCN1.
+
+<<echo=FALSE,results=tex>>=
+load('anaImage.RData')
+library('xtable')
+foo <- cbind(phenoT[1:6,2:3],phenoT[7:12,2:3])
+print(xtable(foo, caption = 'Genomic DNA and phenotype of individuals used for WES',
+       digits=c(0,0,4,0,4),label='tab:female'),
+      table.placement='tbp',caption.placement='top')
+@
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+foo <- targetGT2
+print(xtable(foo, caption = 'Genomic variations from WES',
+       label='tab:whole'),
+      table.placement='tbp',caption.placement='top',size='small')
+@
+
+<<zdistr, echo=false,fig=FALSE>>=
+
+hist(theZ,50,xlim=c(-2,5),prob=T,xlab='Z score', main=NULL)
+#lines(density(rnorm(length(theZ),mean(theZ),sd(theZ))), lty=2)
+#lines(density(theZ))
+segments(Y[6],0,Y[6],0.2, col='red')
+segments(Y[7],0,Y[7],0.2, col='green')
+@
+
+\begin{figure}[htb]
+\centering
+<<fig=TRUE,echo=FALSE,height=4>>=
+<<zdistr>>
+@
+
+\caption{{\bf {Distribution of Z scores of all the female individuals whose genomic DNA we have.}} Dashed line, simulated normal distribution with the mean and standard deviation values of these female's Z scores; solid line, density curve of the Z scores distribution. Red vertical line, the maximum of the lower extreme phenotype we used to do the whole exome sequencing; green vertical line, the minimum of the upper extreme phenotype. }
+\label{fig:zdistr}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+<<fig=TRUE,echo=FALSE,height=4>>=
+plot(log(myPs,10), ylab='naive p from CEPSKAT (log10)')
+@
+
+\caption{{\bf {Na\"ive p values calculated by CEPSKAT on the association of genetic variations in the genes with Z scores.}} Genetic variantions in each genes were collapsed altogether to give a p value for that gene. }
+\label{fig:allP}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+<<fig=TRUE,echo=FALSE,height=4, height=4>>=
+image(z=theGT)
+@
+
+\caption{{\bf {Genotype matrix of MYO7A.}} Horizontal, ID with Z score increasing; vertical, SNP positions across the MYO7A gene. Red, homozygous of major allele; yellow, heterozygous major and minor allele; white, homozygous of minor alleles.}
+\label{fig:myo7a}
+\end{figure}
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+myResult <- read.csv('/home//ruqiang/Pharacogenomics//WES_Analysis/result3/SKAT-report.csv',header=T)
+myResult <- myResult[order(myResult$P),]
+foo <- cbind(myResult[1:20,2:4], myResult[21:40,2:4],
+             myResult[41:60,2:4], myResult[61:80,2:4])
+print(xtable(foo, caption = 'Collapsed naive p of genetic variations in the gene in association with Z scores',
+       label='tab:lowP', digits=c(0,0,4,0,0,4,0,0,4,0,0,4,0)),
+      table.placement='tbp',caption.placement='top',size='tiny')
+@
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+foo <- GT.example
+print(xtable(foo, caption = 'Genotype matrix of CACNA1F gene',
+       label='tab:a1F', digits = c(0,0,4,rep(0,10))),
+      table.placement='tbp',caption.placement='top',size='small')
+@
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+foo <- SNP.example
+print(xtable(foo, caption = 'Known SNPs called for CACNA1F gene across the 12 samples',
+       label='tab:SNPa1F'),
+      table.placement='tbp',caption.placement='top',size='tiny')
+@
+
+
+\begin{figure}[htb]
+\centering
+<<fig=TRUE,echo=FALSE,height=4>>=
+allP <- read.csv('/home/ruqiang/Pharacogenomics//WES_Analysis/resultAll/SKAT-All-report.csv',header=T)
+myPs <- sort(allP$P)
+plot(log(myPs,10), ylab='Naive p from CEPSKAT (log10)')
+@
+
+\caption{{\bf {Na\"ive p values calculated by CEPSKAT on the association of genetic variations in all the genes with Z scores.}} Genetic variantions in each genes were collapsed altogether to give a p value for that gene. }
+\label{fig:allGene}
+\end{figure}
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+myResult <- read.csv('/home//ruqiang/Pharacogenomics//WES_Analysis/resultAll/SKAT-All-report.csv',header=T)
+myResult <- myResult[order(myResult$P),]
+foo <- cbind(myResult[1:20,2:4], myResult[21:40,2:4],
+             myResult[41:60,2:4], myResult[61:80,2:4])
+print(xtable(foo, caption = 'Collapsed naive p of genetic variations in all the genes in association with Z scores.',
+       label='tab:lowPall', digits=c(0,0,4,0,0,4,0,0,4,0,0,4,0)),
+      table.placement='tbp',caption.placement='top',size='tiny')
+@
+
+<<echo=FALSE,results=tex>>=
+#load('anaImage.RData')
+#library('xtable')
+myResult <- read.csv('/home//ruqiang/Pharacogenomics//WES_Analysis/resultAll/GCN1L1-gt.csv',header=T)
+foo <- myResult
+print(xtable(foo, caption = 'Genotype matrix of GCN1L1 gene',
+       label='tab:gcn1l1', digits = c(0,0,4,rep(0,10))),
+      table.placement='tbp',caption.placement='top',size='small')
+@
+
+\end{document}
