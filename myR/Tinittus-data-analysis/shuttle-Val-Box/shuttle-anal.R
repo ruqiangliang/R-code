@@ -71,15 +71,22 @@ for (id in 1:length(idLevels)){
     mouseMatrix[day, match(mouseDay$kHz, allFreq)]<- mouseDay$Pass.Rate  # rewrite NA into real data
     totalMatrix[day, match(mouseDay$kHz, allFreq)]<- mouseDay$Num.Active # rewrite test number into real data
   }
-  
+  meanFreqMouse <- rowMeans(mouseMatrix, na.rm=T)
+  freqMeanDay <- colMeans(mouseMatrix, na.rm=T)
   #### Plot the data
   image.plot(mouseMatrix, xlab='Day', ylab='Frequency',
              main=paste('Pass rate of ',as.character(idLevels[id]), sep=''))
   image.plot(totalMatrix, xlab='Day', ylab='Frequency',
                         main=paste('Active number of ',as.character(idLevels[id]), sep=''))
-  
+  plot(meanFreqMouse,type='b', xlab='Day', ylab='Active pass rate', 
+       main=paste('Average pass rate of ',as.character(idLevels[id]), 
+                  ' Across All Frequencies',sep=''), ylim=c(0,1))
+  plot(freqMeanDay,type='b', xlab='Frequency (kHz)', ylab='Active pass rate', 
+       main=paste('Average pass rate of ',as.character(idLevels[id]), 
+                  ' Across All Days',sep=''), ylim=c(0,1), x=c(4:60))
   #### save the data
-  write.csv(mouseMatrix, paste('../Pass-Ratio-', as.character(idLevels[id]),'.csv', sep=''))
+  mSaveMatrix <- rbind(cbind(mouseMatrix,meanFreqMouse), c(freqMeanDay,NA))
+  write.csv(mSaveMatrix, paste('../Pass-Ratio-', as.character(idLevels[id]),'.csv', sep=''))
   write.csv(totalMatrix, paste('../Number-of-Active-', as.character(idLevels[id]),'.csv', sep=''))
 }
 
